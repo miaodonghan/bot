@@ -6,9 +6,12 @@ namespace Bot
     class StrategyConfig
     {
 
-        string AccountId { get;}
+        string AccountId { get; set;}
 
-        string password {get;}
+        string Password { get; set;}
+  
+        string StrategyId { get; set;}
+        
     }
 
 }
