@@ -11,5 +11,8 @@
     <PackageReference Include="Microsoft.Data.Sqlite" Version="7.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="StrategyPool\StrategyRunner.cs" />
+  </ItemGroup>
 </Project>
 

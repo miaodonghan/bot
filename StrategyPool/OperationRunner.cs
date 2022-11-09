@@ -3,19 +3,17 @@ namespace Bot.StrategyPool
 
     public class OperationRunner
     {
-        private CancellationTokenSource cancellationTokenSource;
+        private CancellationToken cancellationToken;
 
-        public OperationRunner()
+        public OperationRunner(CancellationToken cancellationToken)
         {
-            this.cancellationTokenSource = new CancellationTokenSource();
+            this.cancellationToken = cancellationToken;
         }
 
 
         public async Task RunAsync(Action action)
         {
-            await Task.Run(action, cancellationTokenSource.Token);
+            await Task.Run(action, cancellationToken);
         }
-
-        public void Cancel() => cancellationTokenSource.Cancel();
     }
 }

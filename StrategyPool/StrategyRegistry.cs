@@ -11,15 +11,15 @@ namespace Bot.StrategyPool
         }
 
 
-        public static async Task RunStrategy(string StrategyType, OperationRunner runner)
+        public static async Task RunStrategy(string StrategyType)
         {
             Type? type = Type.GetType(StrategyType);
             _ = type ?? throw new Exception("No strategy type is found");
 
-            IStrategy? strategy = (IStrategy?)Activator.CreateInstance(type);
+            Strategy? strategy = (Strategy?)Activator.CreateInstance(type);
             _ = strategy ?? throw new Exception("Failed to crate an instance of the strategy");
 
-            await strategy.RunAsync(runner);
+            await strategy.RunAsync();
         }
 
         public static List<Type> ListStrategyRegistry()

@@ -7,10 +7,7 @@ internal class Program
     {
         StrategyRegistry.ListStrategyRegistry().ForEach(i => Console.WriteLine(i));
 
-        OperationRunner runner = new OperationRunner();
-        Task t = StrategyRegistry.RunStrategy("Bot.StrategyPool.Strategies.NoopStrategy", runner);
-
-        runner.Cancel();
-        t.Wait();
+        CancellationTokenSource tokenSource = new CancellationTokenSource();
+        await StrategyRegistry.RunStrategy("Bot.StrategyPool.Strategies.NoopStrategy");
     }
 }

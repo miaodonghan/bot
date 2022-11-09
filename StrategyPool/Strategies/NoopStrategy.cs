@@ -3,22 +3,22 @@ using Bot.StrategyPool;
 namespace Bot.StrategyPool.Strategies
 {
 
-    class NoopStrategy : IStrategy
+    class NoopStrategy : Strategy
     {
-        public string Description()
+        public override string Description()
         {
             return "A sample strategy that does nothing";
         }
 
-        public string DisplayName()
+        public override string DisplayName()
         {
             return "A sample strategy that does nothing";
         }
 
-        public async Task RunAsync(OperationRunner runner)
+        public override async Task RunAsync()
         {
-            await runner.RunAsync(()=> Task.Delay(100));
-            await runner.RunAsync(OperationRegistry.WaitMarketOpen);
+            await RunActionAsync(()=> Task.Delay(100));
+            await RunActionAsync(OperationRegistry.WaitMarketOpen);
         }
     }
 }
