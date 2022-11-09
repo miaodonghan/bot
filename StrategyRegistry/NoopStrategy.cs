@@ -13,9 +13,9 @@ namespace Bot
             return "A sample strategy that does nothing";
         }
 
-        public async Task RunAsync()
+        public async Task RunAsync(CancellationToken ct)
         {
-            await Task.Run(() => Console.WriteLine("This strategy does nothing"));
+            await Task.Run(Operations.WaitMarketOpen, ct);
         }
     }
 }

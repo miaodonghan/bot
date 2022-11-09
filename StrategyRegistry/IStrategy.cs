@@ -1,11 +1,9 @@
-using Microsoft.Extensions.Localization;
-
 namespace Bot
 {
 
     interface IStrategy
     {
-        Task RunAsync();
+        Task RunAsync(CancellationToken ct);
 
         String DisplayName();
 
