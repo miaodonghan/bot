@@ -1,9 +1,9 @@
-namespace Bot.StrategyRegistry
+namespace Bot.StrategyPool
 {
 
     interface IStrategy
     {
-        Task RunAsync(CancellationToken ct);
+        Task RunAsync(OperationRunner runner);
 
         String DisplayName();
 

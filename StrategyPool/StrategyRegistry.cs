@@ -1,17 +1,17 @@
-using Bot.StrategyRegistry.Strategies;
+using Bot.StrategyPool.Strategies;
 
-namespace Bot.StrategyRegistry
+namespace Bot.StrategyPool
 {
     internal class StrategyRegistry
     {
-        static List<Type> myList = new List<Type> { typeof(Bot.StrategyRegistry.Strategies.NoopStrategy), };
+        static List<Type> myList = new List<Type> { typeof(Bot.StrategyPool.Strategies.NoopStrategy), };
 
         StrategyRegistry()
         {
         }
 
 
-        public static async Task RunStrategy(string StrategyType, CancellationToken token)
+        public static async Task RunStrategy(string StrategyType, OperationRunner runner)
         {
             Type? type = Type.GetType(StrategyType);
             _ = type ?? throw new Exception("No strategy type is found");
@@ -19,7 +19,7 @@ namespace Bot.StrategyRegistry
             IStrategy? strategy = (IStrategy?)Activator.CreateInstance(type);
             _ = strategy ?? throw new Exception("Failed to crate an instance of the strategy");
 
-            await strategy.RunAsync(token);
+            await strategy.RunAsync(runner);
         }
 
         public static List<Type> ListStrategyRegistry()

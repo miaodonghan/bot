@@ -1,11 +1,8 @@
-namespace Bot.StrategyRegistry
+namespace Bot.StrategyPool
 {
-
-
-    public sealed class Operations
+    public sealed class OperationRegistry
     {
-        private Operations() { }
-
+        private OperationRegistry() {}
 
         static Action<string, double, double> PlaceBuyOrder = (string symbol, double quantity, double limit) =>
         {
@@ -19,11 +16,6 @@ namespace Bot.StrategyRegistry
        internal static Action WaitMarketOpen = () => { Console.WriteLine("wait for market open"); };
 
         static Action<TimeSpan> Delay = (TimeSpan ts) => { Console.WriteLine("delay"); };
-
-
-        internal async static Task RunAsync(Action action, CancellationToken ct) { 
-            await Task.Run(action, ct);
-        }
 
     }
 }

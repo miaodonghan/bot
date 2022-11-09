@@ -1,5 +1,6 @@
+using Bot.StrategyPool;
 
-namespace Bot.StrategyRegistry.Strategies
+namespace Bot.StrategyPool.Strategies
 {
 
     class NoopStrategy : IStrategy
@@ -14,10 +15,10 @@ namespace Bot.StrategyRegistry.Strategies
             return "A sample strategy that does nothing";
         }
 
-        public async Task RunAsync(CancellationToken ct)
+        public async Task RunAsync(OperationRunner runner)
         {
-            await Task.Delay(100);
-            await Operations.RunAsync(Operations.WaitMarketOpen, ct);
+            await runner.RunAsync(()=> Task.Delay(100));
+            await runner.RunAsync(OperationRegistry.WaitMarketOpen);
         }
     }
 }
