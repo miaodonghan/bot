@@ -1,4 +1,4 @@
-namespace Bot
+namespace Bot.StrategyRegistry
 {
 
 
@@ -19,6 +19,11 @@ namespace Bot
        internal static Action WaitMarketOpen = () => { Console.WriteLine("wait for market open"); };
 
         static Action<TimeSpan> Delay = (TimeSpan ts) => { Console.WriteLine("delay"); };
+
+
+        internal async static Task RunAsync(Action action, CancellationToken ct) { 
+            await Task.Run(action, ct);
+        }
 
     }
 }

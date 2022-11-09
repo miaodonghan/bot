@@ -1,4 +1,5 @@
-namespace Bot
+
+namespace Bot.StrategyRegistry.Strategies
 {
 
     class NoopStrategy : IStrategy
@@ -15,7 +16,8 @@ namespace Bot
 
         public async Task RunAsync(CancellationToken ct)
         {
-            await Task.Run(Operations.WaitMarketOpen, ct);
+            await Task.Delay(100);
+            await Operations.RunAsync(Operations.WaitMarketOpen, ct);
         }
     }
 }

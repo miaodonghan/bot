@@ -1,5 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using Bot;
+using Bot.StrategyRegistry;
 
 internal class Program
 {
@@ -8,11 +8,10 @@ internal class Program
         StrategyRegistry.ListStrategyRegistry().ForEach(i => Console.WriteLine(i));
 
         CancellationTokenSource ts = new CancellationTokenSource();
-        CancellationToken token = ts.Token;
 
-        await StrategyRegistry.RunStrategy("Bot.NoopStrategy", token);
+        Task t = StrategyRegistry.RunStrategy("Bot.StrategyRegistry.Strategies.NoopStrategy", ts.Token);
 
         ts.Cancel();
-
+        t.Wait();
     }
 }
