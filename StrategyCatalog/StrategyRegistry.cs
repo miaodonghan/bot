@@ -1,10 +1,10 @@
-using Bot.StrategyPool.Strategies;
+using Bot.StrategyCatalog.Strategies;
 
-namespace Bot.StrategyPool
+namespace Bot.StrategyCatalog
 {
     internal class StrategyRegistry
     {
-        static List<Type> myList = new List<Type> { typeof(Bot.StrategyPool.Strategies.NoopStrategy), };
+        static List<Type> myList = new List<Type> { typeof(Bot.StrategyCatalog.Strategies.NoopStrategy), };
 
         StrategyRegistry()
         {

@@ -1,6 +1,5 @@
-namespace Bot.StrategyPool
+namespace Bot.StrategyCatalog
 {
-
     public abstract class Strategy
     {
         CancellationTokenSource tokenSource;
@@ -23,7 +22,7 @@ namespace Bot.StrategyPool
             await runner.RunAsync(action);
         }
 
-        protected void Cancel()
+        public void Cancel()
         {
             tokenSource.Cancel();
         }

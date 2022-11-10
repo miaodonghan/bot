@@ -1,6 +1,6 @@
-using Bot.StrategyPool;
+using Bot.StrategyCatalog;
 
-namespace Bot.StrategyPool.Strategies
+namespace Bot.StrategyCatalog.Strategies
 {
 
     class NoopStrategy : Strategy

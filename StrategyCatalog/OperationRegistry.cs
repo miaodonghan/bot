@@ -1,4 +1,4 @@
-namespace Bot.StrategyPool
+namespace Bot.StrategyCatalog
 {
     public sealed class OperationRegistry
     {
