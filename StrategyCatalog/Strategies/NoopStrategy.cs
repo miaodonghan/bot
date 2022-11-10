@@ -17,7 +17,7 @@ namespace Bot.StrategyCatalog.Strategies
 
         public override async Task RunAsync()
         {
-            await RunActionAsync(()=> Task.Delay(100));
+            await RunActionAsync(() => Task.Delay(100));
             await RunActionAsync(OperationRegistry.WaitMarketOpen);
         }
     }
