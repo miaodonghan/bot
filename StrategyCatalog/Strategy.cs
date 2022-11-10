@@ -20,7 +20,7 @@ namespace Bot.StrategyCatalog
         public abstract String Description();
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public Task Run()
+        public Task Start()
         {
             if (this.runningTask == null)
             {
