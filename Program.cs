@@ -5,11 +5,12 @@ internal class Program
 {
     private static async Task Main(string[] args)
     {
-        StrategyRegistry.ListStrategyRegistry().ForEach(i => Console.WriteLine(i));
+        StrategyCatalog.ListStrategyRegistry().ForEach(i => Console.WriteLine(i));
 
-        Strategy strategy = StrategyRegistry.GetStrategy("Bot.StrategyCatalog.Strategies.NoopStrategy");
-        Task task = strategy.RunAsync();
+        Strategy strategy = StrategyCatalog.GetStrategy("Bot.StrategyCatalog.Strategies.NoopStrategy");
+        Task task = strategy.Run();
         strategy.Cancel();
+        
         await task;
     }
 }

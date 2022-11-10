@@ -2,11 +2,11 @@ using Bot.StrategyCatalog.Strategies;
 
 namespace Bot.StrategyCatalog
 {
-    internal class StrategyRegistry
+    internal class StrategyCatalog
     {
         static List<Type> myList = new List<Type> { typeof(Bot.StrategyCatalog.Strategies.NoopStrategy), };
 
-        StrategyRegistry()
+        StrategyCatalog()
         {
         }
 

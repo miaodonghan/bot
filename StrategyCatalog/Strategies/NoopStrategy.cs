@@ -15,7 +15,7 @@ namespace Bot.StrategyCatalog.Strategies
             return "A sample strategy that does nothing";
         }
 
-        public override async Task RunAsync()
+        public override async Task StrategyLogic()
         {
             await RunActionAsync(() => Task.Delay(100));
             await RunActionAsync(OperationRegistry.WaitMarketOpen);

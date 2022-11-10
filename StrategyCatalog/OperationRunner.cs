@@ -1,11 +1,11 @@
 namespace Bot.StrategyCatalog
 {
 
-    public class OperationRunner
+    public class OperationExecutor
     {
         private CancellationToken cancellationToken;
 
-        public OperationRunner(CancellationToken cancellationToken)
+        public OperationExecutor(CancellationToken cancellationToken)
         {
             this.cancellationToken = cancellationToken;
         }
