@@ -18,6 +18,8 @@ namespace Bot.StrategyCatalog
         public abstract String DisplayName();
 
         public abstract String Description();
+        
+        public abstract Task StrategyLogic();
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public Task Start()
@@ -36,16 +38,14 @@ namespace Bot.StrategyCatalog
                 : this.runningTask.Status;
         }
 
-        public abstract Task StrategyLogic();
-
-        protected async Task RunActionAsync(Action action)
-        {
-            await executor.RunAsync(action);
-        }
-
         public void Cancel()
         {
             tokenSource.Cancel();
+        } 
+        
+        protected async Task RunActionAsync(Action action)
+        {
+            await executor.RunAsync(action);
         }
     }
 }
