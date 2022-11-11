@@ -19,14 +19,14 @@ namespace Bot.StrategyCatalog
 
         public abstract String Description();
         
-        public abstract Task StrategyLogic();
+        public abstract Task StrategyLogic(StrategyConfig config);
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public Task Start()
+        public Task Start(StrategyConfig config)
         {
             if (this.runningTask == null)
             {
-                this.runningTask = StrategyLogic();
+                this.runningTask = StrategyLogic(config);
             }
             return this.runningTask;
         }
