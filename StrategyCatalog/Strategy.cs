@@ -19,11 +19,11 @@ namespace Bot.StrategyCatalog
 
         public abstract String Description();
 
-        public abstract Task StrategyLogic(StrategyConfig config);
+        public abstract Task StrategyLogic(StrategyConfigProvider config);
 
         // TODO: change to config provider instead of config instance.
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public Task Start(StrategyConfig config)
+        public Task Start(StrategyConfigProvider config)
         {
             if (this.runningTask != null)
             {

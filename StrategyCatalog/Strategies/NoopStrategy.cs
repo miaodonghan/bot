@@ -20,14 +20,9 @@ namespace Bot.StrategyCatalog.Strategies
             for (; ; )
             {
                 Console.WriteLine("Run with config " + config().ToString());
-                await Task.Delay(TimeSpan.FromSeconds(3));
-                await RunActionAsync(OperationRegistry.WaitMarketOpen);
+                await Task.Delay(TimeSpan.FromSeconds(1));
+                await RunActionAsync(() => OperationRegistry.PlaceBuyOrder("QQQ", 100.0, 1.0));
             }
-        }
-
-        public override Task StrategyLogic(StrategyConfig config)
-        {
-            throw new NotImplementedException();
         }
     }
 }
