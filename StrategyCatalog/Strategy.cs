@@ -18,7 +18,7 @@ namespace Bot.StrategyCatalog
         public abstract String DisplayName();
 
         public abstract String Description();
-        
+
         public abstract Task StrategyLogic(StrategyConfig config);
 
         // TODO: change to config provider instead of config instance.
@@ -28,7 +28,7 @@ namespace Bot.StrategyCatalog
             if (this.runningTask != null)
             {
                 throw new Exception("Task is already running.");
-            } 
+            }
             this.runningTask = StrategyLogic(config);
             return this.runningTask;
         }
@@ -43,8 +43,8 @@ namespace Bot.StrategyCatalog
         public void Stop()
         {
             tokenSource.Cancel();
-        } 
-        
+        }
+
         protected async Task RunActionAsync(Action action)
         {
             await executor.RunAsync(action);

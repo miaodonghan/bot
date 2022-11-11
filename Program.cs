@@ -10,17 +10,21 @@ internal class Program
         Strategy strategy = StrategyCatalog.GetStrategy("Bot.StrategyCatalog.Strategies.NoopStrategy");
         try
         {
-            Task task = strategy.Start(new StrategyConfig() {
-                AccountId = "test",
-                Password = "pwd",
-            });
+            Task task = strategy.Start(() =>
+                new StrategyConfig()
+                {
+                    AccountId = "test",
+                    Password = "pwd",
+                }
+            );
             await task;
         }
         catch (Exception ex)
         {
             Console.WriteLine(ex.Message);
         }
-        finally {
+        finally
+        {
             strategy.Stop();
         }
     }

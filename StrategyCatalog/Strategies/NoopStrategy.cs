@@ -15,14 +15,19 @@ namespace Bot.StrategyCatalog.Strategies
             return "A sample strategy that does nothing";
         }
 
-        public override async Task StrategyLogic(StrategyConfig config)
+        public override async Task StrategyLogic(StrategyConfigProvider config)
         {
             for (; ; )
             {
-                Console.WriteLine("Run with config " + config.ToString());
+                Console.WriteLine("Run with config " + config().ToString());
                 await Task.Delay(TimeSpan.FromSeconds(3));
                 await RunActionAsync(OperationRegistry.WaitMarketOpen);
             }
+        }
+
+        public override Task StrategyLogic(StrategyConfig config)
+        {
+            throw new NotImplementedException();
         }
     }
 }
