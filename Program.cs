@@ -8,9 +8,17 @@ internal class Program
         StrategyCatalog.ListStrategyRegistry().ForEach(i => Console.WriteLine(i));
 
         Strategy strategy = StrategyCatalog.GetStrategy("Bot.StrategyCatalog.Strategies.NoopStrategy");
-        Task task = strategy.Start();
-        strategy.Cancel();
-        
-        await task;
+        try
+        {
+            Task task = strategy.Start();
+            await task;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        finally {
+            strategy.Stop();
+        }
     }
 }

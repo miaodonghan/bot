@@ -17,8 +17,12 @@ namespace Bot.StrategyCatalog.Strategies
 
         public override async Task StrategyLogic()
         {
-            await RunActionAsync(() => Task.Delay(100));
-            await RunActionAsync(OperationRegistry.WaitMarketOpen);
+            for (; ; )
+            {
+                Console.WriteLine("Start");
+                await Task.Delay(TimeSpan.FromSeconds(3));
+                await RunActionAsync(OperationRegistry.WaitMarketOpen);
+            }
         }
     }
 }

@@ -38,7 +38,7 @@ namespace Bot.StrategyCatalog
                 : this.runningTask.Status;
         }
 
-        public void Cancel()
+        public void Stop()
         {
             tokenSource.Cancel();
         } 
