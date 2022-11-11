@@ -21,13 +21,15 @@ namespace Bot.StrategyCatalog
         
         public abstract Task StrategyLogic(StrategyConfig config);
 
+        // TODO: change to config provider instead of config instance.
         [MethodImpl(MethodImplOptions.Synchronized)]
         public Task Start(StrategyConfig config)
         {
-            if (this.runningTask == null)
+            if (this.runningTask != null)
             {
-                this.runningTask = StrategyLogic(config);
-            }
+                throw new Exception("Task is already running.");
+            } 
+            this.runningTask = StrategyLogic(config);
             return this.runningTask;
         }
 
