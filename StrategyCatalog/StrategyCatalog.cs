@@ -2,15 +2,15 @@ using Bot.StrategyCatalog.Strategies;
 
 namespace Bot.StrategyCatalog
 {
-    internal class StrategyCatalog
+    public class StrategyCatalog
     {
         static List<Type> myList = new List<Type>
-        { 
+        {
             typeof(NoopStrategy), 
             // Add additional strategy implementations.
         };
 
-        StrategyCatalog(){}
+        StrategyCatalog() { }
 
         public static Strategy GetStrategy(string StrategyId)
         {
@@ -26,6 +26,11 @@ namespace Bot.StrategyCatalog
         public static List<Type> ListStrategyRegistry()
         {
             return myList;
+        }
+        public static StrategyConfig GetFirstStrategyConfig()
+        {
+            using var db = new StrategyConfigContext();
+            return db.configs.First();
         }
     }
 }

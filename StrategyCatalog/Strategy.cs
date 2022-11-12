@@ -30,6 +30,13 @@ namespace Bot.StrategyCatalog
             {
                 throw new Exception("Task is already running.");
             }
+            StrategyConfig conf = config();
+            if (conf.StrategyId != this.GetType().FullName)
+            {
+                throw new InvalidOperationException(
+                    string.Format("The strategy id {0} doesn't match config {1}", 
+                        this.GetType().FullName, conf.StrategyId!));
+            }
             runningTask = StrategyLogic(config);
             return runningTask;
         }

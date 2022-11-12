@@ -1,6 +1,7 @@
 ﻿using Bot.StrategyCatalog;
 using Bot.StrategyCatalog.Strategies;
 
+
 internal class Program
 {
     private static async Task Main(string[] args)
@@ -9,12 +10,12 @@ internal class Program
 
         StrategyCatalog.ListStrategyRegistry().ForEach(i => Console.WriteLine(i));
 
-        StrategyConfig strategyConfig = sqliteStrategyConfigProvider();
+        StrategyConfig strategyConfig = StrategyCatalog.GetFirstStrategyConfig();
         Strategy strategy = StrategyCatalog.GetStrategy(strategyConfig.StrategyId!);
         
         try
         {
-            Task task = strategy.Start(sqliteStrategyConfigProvider);
+            Task task = strategy.Start(StrategyCatalog.GetFirstStrategyConfig);
             await task;
         }
         catch (Exception ex)
@@ -42,11 +43,5 @@ internal class Program
             });
             db.SaveChanges();
         }
-    }
-
-    private static StrategyConfig sqliteStrategyConfigProvider()
-    {
-        using var db = new StrategyConfigContext();
-        return db.configs.First();
     }
 }

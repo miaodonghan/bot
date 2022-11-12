@@ -18,7 +18,7 @@ namespace Bot.StrategyCatalog.Strategies
 
         public override string StrategyId()
         {
-            return typeof(NoopStrategy).ToString();
+            return typeof(NoopStrategy).FullName!;
         }
 
         public override async Task StrategyLogic(StrategyConfigProvider config)
@@ -26,7 +26,7 @@ namespace Bot.StrategyCatalog.Strategies
             for (; ; )
             {
                 Console.WriteLine("Run with config: " + JsonSerializer.Serialize(config()));
-                await Task.Delay(TimeSpan.FromSeconds(1));
+                await Task.Delay(TimeSpan.FromSeconds(3));
                 await RunActionAsync(() => OperationRegistry.PlaceBuyOrder("QQQ", 100.0, 1.0));
             }
         }
