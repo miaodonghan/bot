@@ -13,7 +13,7 @@ namespace Bot.StrategyCatalog
         {
             var folder = Environment.SpecialFolder.LocalApplicationData;
             var path = Environment.GetFolderPath(folder);
-            DbPath = System.IO.Path.Join(path, "blogging.db");
+            DbPath = Path.Join(path, "strategy_config.db");
         }
 
         // The following configures EF to create a Sqlite database file in the
@@ -32,7 +32,5 @@ namespace Bot.StrategyCatalog
         public string? Password { get; set; }
 
         public string? StrategyId { get; set; }
-
     }
-
 }

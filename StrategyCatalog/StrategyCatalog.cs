@@ -4,7 +4,11 @@ namespace Bot.StrategyCatalog
 {
     internal class StrategyCatalog
     {
-        static List<Type> myList = new List<Type> { typeof(Bot.StrategyCatalog.Strategies.NoopStrategy), };
+        static List<Type> myList = new List<Type>
+        { 
+            typeof(NoopStrategy), 
+            // Add additional strategy implementations.
+        };
 
         StrategyCatalog(){}
 

@@ -8,6 +8,7 @@ internal class Program
         StrategyCatalog.ListStrategyRegistry().ForEach(i => Console.WriteLine(i));
 
         Strategy strategy = StrategyCatalog.GetStrategy("Bot.StrategyCatalog.Strategies.NoopStrategy");
+        
         try
         {
             SeedConfigs();
