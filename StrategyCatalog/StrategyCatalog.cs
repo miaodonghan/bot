@@ -2,19 +2,19 @@ using Bot.StrategyCatalog.Strategies;
 
 namespace Bot.StrategyCatalog
 {
-    internal class StrategyCatalog
+    public class StrategyCatalog
     {
         static List<Type> myList = new List<Type>
-        { 
+        {
             typeof(NoopStrategy), 
             // Add additional strategy implementations.
         };
 
-        StrategyCatalog(){}
+        StrategyCatalog() { }
 
-        public static Strategy GetStrategy(string StrategyType)
+        public static Strategy GetStrategy(string StrategyId)
         {
-            Type? type = Type.GetType(StrategyType);
+            Type? type = Type.GetType(StrategyId);
             _ = type ?? throw new Exception("No strategy type is found");
 
             Strategy? strategy = (Strategy?)Activator.CreateInstance(type);
@@ -26,6 +26,11 @@ namespace Bot.StrategyCatalog
         public static List<Type> ListStrategyRegistry()
         {
             return myList;
+        }
+        public static StrategyConfig GetFirstStrategyConfig()
+        {
+            using var db = new StrategyConfigContext();
+            return db.configs.First();
         }
     }
 }
