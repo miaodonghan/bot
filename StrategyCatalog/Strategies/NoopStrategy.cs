@@ -20,7 +20,7 @@ namespace Bot.StrategyCatalog.Strategies
             for (; ; )
             {
                 Console.WriteLine("Run with config " + config().ToString());
-                await Task.Delay(TimeSpan.FromSeconds(1));
+                await Task.Delay(TimeSpan.FromSeconds(5));
                 await RunActionAsync(() => OperationRegistry.PlaceBuyOrder("QQQ", 100.0, 1.0));
             }
         }

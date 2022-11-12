@@ -39,9 +39,12 @@ namespace Bot.StrategyCatalog
                 : runningTask.Status;
         }
 
-        public void Stop()
+        public void RequestCancel()
         {
-            tokenSource.Cancel();
+            if (runningTask != null)
+            {
+                tokenSource.Cancel();
+            }
         }
 
         protected async Task RunActionAsync(Action action)

@@ -27,7 +27,7 @@ internal class Program
         }
         finally
         {
-            strategy.Stop();
+            strategy.RequestCancel();
         }
     }
 
