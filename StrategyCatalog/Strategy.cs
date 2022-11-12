@@ -24,19 +24,19 @@ namespace Bot.StrategyCatalog
         [MethodImpl(MethodImplOptions.Synchronized)]
         public Task Start(StrategyConfigProvider config)
         {
-            if (this.runningTask != null)
+            if (runningTask != null)
             {
                 throw new Exception("Task is already running.");
             }
-            this.runningTask = StrategyLogic(config);
-            return this.runningTask;
+            runningTask = StrategyLogic(config);
+            return runningTask;
         }
 
         public TaskStatus? GetTaskStatus()
         {
-            return this.runningTask == null
+            return runningTask == null
                 ? null
-                : this.runningTask.Status;
+                : runningTask.Status;
         }
 
         public void Stop()
