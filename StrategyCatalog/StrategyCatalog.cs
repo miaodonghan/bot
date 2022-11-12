@@ -12,9 +12,9 @@ namespace Bot.StrategyCatalog
 
         StrategyCatalog(){}
 
-        public static Strategy GetStrategy(string StrategyType)
+        public static Strategy GetStrategy(string StrategyId)
         {
-            Type? type = Type.GetType(StrategyType);
+            Type? type = Type.GetType(StrategyId);
             _ = type ?? throw new Exception("No strategy type is found");
 
             Strategy? strategy = (Strategy?)Activator.CreateInstance(type);

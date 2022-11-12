@@ -1,24 +1,20 @@
-﻿// See https://aka.ms/new-console-template for more information
-using Bot.StrategyCatalog;
+﻿using Bot.StrategyCatalog;
+using Bot.StrategyCatalog.Strategies;
 
 internal class Program
 {
     private static async Task Main(string[] args)
     {
+        SeedConfigs();
+
         StrategyCatalog.ListStrategyRegistry().ForEach(i => Console.WriteLine(i));
 
-        Strategy strategy = StrategyCatalog.GetStrategy("Bot.StrategyCatalog.Strategies.NoopStrategy");
+        StrategyConfig strategyConfig = sqliteStrategyConfigProvider();
+        Strategy strategy = StrategyCatalog.GetStrategy(strategyConfig.StrategyId!);
         
         try
         {
-            SeedConfigs();
-  
-            Task task = strategy.Start(() =>
-                {
-                    using var db = new StrategyConfigContext();
-                    return db.configs.First();
-                }
-            );
+            Task task = strategy.Start(sqliteStrategyConfigProvider);
             await task;
         }
         catch (Exception ex)
@@ -38,8 +34,19 @@ internal class Program
         Console.WriteLine($"configs path: {db.DbPath}.");
         if (db.configs.Count() == 0)
         {
-            db.Add(new StrategyConfig() { AccountId = "testAccount", Password = "123" });
+            db.Add(new StrategyConfig()
+            {
+                AccountId = "testAccount",
+                Password = "123",
+                StrategyId = typeof(NoopStrategy).ToString()
+            });
             db.SaveChanges();
         }
+    }
+
+    private static StrategyConfig sqliteStrategyConfigProvider()
+    {
+        using var db = new StrategyConfigContext();
+        return db.configs.First();
     }
 }

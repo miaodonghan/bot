@@ -19,6 +19,8 @@ namespace Bot.StrategyCatalog
 
         public abstract String Description();
 
+        public abstract String StrategyId();
+
         public abstract Task StrategyLogic(StrategyConfigProvider config);
 
         [MethodImpl(MethodImplOptions.Synchronized)]

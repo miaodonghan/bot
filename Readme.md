@@ -12,4 +12,4 @@ dotnet ef database update
 Run the app:
 ```
 dotnet run
-```
+```sudo
