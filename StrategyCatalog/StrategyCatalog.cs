@@ -6,10 +6,7 @@ namespace Bot.StrategyCatalog
     {
         static List<Type> myList = new List<Type> { typeof(Bot.StrategyCatalog.Strategies.NoopStrategy), };
 
-        StrategyCatalog()
-        {
-        }
-
+        StrategyCatalog(){}
 
         public static Strategy GetStrategy(string StrategyType)
         {

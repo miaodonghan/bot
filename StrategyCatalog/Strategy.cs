@@ -21,7 +21,6 @@ namespace Bot.StrategyCatalog
 
         public abstract Task StrategyLogic(StrategyConfigProvider config);
 
-        // TODO: change to config provider instead of config instance.
         [MethodImpl(MethodImplOptions.Synchronized)]
         public Task Start(StrategyConfigProvider config)
         {

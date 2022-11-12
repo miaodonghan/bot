@@ -10,11 +10,12 @@ internal class Program
         Strategy strategy = StrategyCatalog.GetStrategy("Bot.StrategyCatalog.Strategies.NoopStrategy");
         try
         {
+            SeedConfigs();
+  
             Task task = strategy.Start(() =>
-                new StrategyConfig()
                 {
-                    AccountId = "test",
-                    Password = "pwd",
+                    using var db = new StrategyConfigContext();
+                    return db.configs.First();
                 }
             );
             await task;
@@ -26,6 +27,18 @@ internal class Program
         finally
         {
             strategy.Stop();
+        }
+    }
+
+
+    private static void SeedConfigs()
+    {
+        using var db = new StrategyConfigContext();
+        Console.WriteLine($"configs path: {db.DbPath}.");
+        if (db.configs.Count() == 0)
+        {
+            db.Add(new StrategyConfig() { AccountId = "testAccount", Password = "123" });
+            db.SaveChanges();
         }
     }
 }
