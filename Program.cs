@@ -8,7 +8,7 @@ internal class Program
     {
         SeedConfigs();
 
-        StrategyCatalog.ListStrategyRegistry().ForEach(i => Console.WriteLine(i));
+        StrategyCatalog.ListStrategyRegistry().ForEach(Console.WriteLine);
 
         StrategyConfig strategyConfig = StrategyCatalog.GetFirstStrategyConfig();
         Strategy strategy = StrategyCatalog.GetStrategy(strategyConfig.StrategyId!);
@@ -32,7 +32,7 @@ internal class Program
     private static void SeedConfigs()
     {
         using var db = new StrategyConfigContext();
-        Console.WriteLine($"configs path: {db.DbPath}.");
+        Console.WriteLine($"configs path: {db.DbPath}");
         if (db.configs.Count() == 0)
         {
             db.Add(new StrategyConfig()

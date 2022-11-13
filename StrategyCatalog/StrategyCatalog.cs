@@ -27,10 +27,10 @@ namespace Bot.StrategyCatalog
         {
             return myList;
         }
-        public static StrategyConfig GetFirstStrategyConfig()
+        public static StrategyConfigProvider GetFirstStrategyConfig = () =>
         {
             using var db = new StrategyConfigContext();
             return db.configs.First();
-        }
+        };
     }
 }
