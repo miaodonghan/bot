@@ -34,7 +34,7 @@ namespace Bot.StrategyCatalog
             if (conf.StrategyId != GetType().FullName)
             {
                 throw new InvalidOperationException(
-                    string.Format("The strategy id {0} doesn't match config {1}", 
+                    string.Format("The strategy id {0} doesn't match config {1}",
                         GetType().FullName, conf.StrategyId!));
             }
             runningTask = StrategyLogic(config);

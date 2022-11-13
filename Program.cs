@@ -12,7 +12,7 @@ internal class Program
 
         StrategyConfig strategyConfig = StrategyCatalog.GetFirstStrategyConfig();
         Strategy strategy = StrategyCatalog.GetStrategy(strategyConfig.StrategyId!);
-        
+
         try
         {
             Task task = strategy.Start(StrategyCatalog.GetFirstStrategyConfig);
@@ -39,7 +39,7 @@ internal class Program
             {
                 AccountId = "testAccount",
                 Password = "123",
-                StrategyId = typeof(NoopStrategy).ToString()
+                StrategyId = typeof(NoopStrategy).FullName
             });
             db.SaveChanges();
         }
