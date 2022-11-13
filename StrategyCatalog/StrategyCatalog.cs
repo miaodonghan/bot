@@ -3,14 +3,14 @@ using Bot.StrategyCatalog.Strategies;
 namespace Bot.StrategyCatalog
 {
     public class StrategyCatalog
-    {
+    {        
+        StrategyCatalog() { }
+        
         static List<Type> myList = new List<Type>
         {
             typeof(NoopStrategy), 
             // Add additional strategy implementations.
         };
-
-        StrategyCatalog() { }
 
         public static Strategy GetStrategy(string StrategyId)
         {

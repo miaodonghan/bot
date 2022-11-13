@@ -15,11 +15,11 @@ namespace Bot.StrategyCatalog
             executor = new OperationExecutor(tokenSource.Token);
         }
 
-        public abstract String DisplayName();
+        public abstract string DisplayName();
 
-        public abstract String Description();
+        public abstract string Description();
 
-        public abstract String StrategyId();
+        public abstract string StrategyId();
 
         public abstract Task StrategyLogic(StrategyConfigProvider config);
 
@@ -31,11 +31,11 @@ namespace Bot.StrategyCatalog
                 throw new Exception("Task is already running.");
             }
             StrategyConfig conf = config();
-            if (conf.StrategyId != this.GetType().FullName)
+            if (conf.StrategyId != GetType().FullName)
             {
                 throw new InvalidOperationException(
                     string.Format("The strategy id {0} doesn't match config {1}", 
-                        this.GetType().FullName, conf.StrategyId!));
+                        GetType().FullName, conf.StrategyId!));
             }
             runningTask = StrategyLogic(config);
             return runningTask;
