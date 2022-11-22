@@ -1,22 +1,43 @@
+using System.Threading;
+
 namespace Bot.StrategyCatalog
 {
     public sealed class OperationRegistry
     {
         private OperationRegistry() { }
 
-        public static Action<string, double, double> PlaceBuyOrder = (string symbol, double quantity, double limit) =>
+        public class NoopOperation : Operation
         {
-            Console.WriteLine("buy {0} of {1} at {2}", symbol, quantity, limit);
-        };
+            public NoopOperation(CancellationToken cancellationToken) : base(cancellationToken)
+            {
+            }
 
-        public static Action<string, double, double> PlaceSellOrder = (string symbol, double quantity, double limit) =>
+            public override string getName()
+            {
+                return "no-op";
+            }
+            public override async Task RunAsync()
+            {
+                await Task.Run(() => Console.WriteLine("no-op"), cancellationToken);
+            }
+        }
+
+
+        public class DelayOperation : Operation
         {
-            Console.WriteLine("sell {0} of {1} at {2}", symbol, quantity, limit);
-        };
+            public DelayOperation(CancellationToken cancellationToken) : base(cancellationToken)
+            {
+            }
 
-        public static Action WaitMarketOpen = () => { Console.WriteLine("wait for market open"); };
+            public override string getName()
+            {
+                return "delay 5s";
+            }
 
-        public static Action<TimeSpan> Delay = (TimeSpan ts) => { Console.WriteLine("delay"); };
-
+            public override async Task RunAsync()
+            {
+                await Task.Delay(TimeSpan.FromSeconds(5), cancellationToken);
+            }
+        }
     }
 }

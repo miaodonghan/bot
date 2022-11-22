@@ -4,15 +4,13 @@ namespace Bot.StrategyCatalog
 {
     public abstract class Strategy
     {
-        private CancellationTokenSource tokenSource;
-        private OperationExecutor executor;
+        protected CancellationTokenSource tokenSource;
 
         private Task? runningTask;
 
         public Strategy()
         {
             tokenSource = new CancellationTokenSource();
-            executor = new OperationExecutor(tokenSource.Token);
         }
 
         public abstract string DisplayName();
@@ -54,11 +52,6 @@ namespace Bot.StrategyCatalog
             {
                 tokenSource.Cancel();
             }
-        }
-
-        protected async Task RunActionAsync(Action action)
-        {
-            await executor.RunAsync(action);
         }
     }
 }
