@@ -26,9 +26,12 @@ namespace Bot.StrategyCatalog.Strategies
             for (; ; )
             {
                 Console.WriteLine("Run with config: " + JsonSerializer.Serialize(config()));
-                await new OperationRegistry.NoopOperation(tokenSource.Token).RunAsync();
+                
+                // Run a cancellable operation with cancellation token.
+                await Task.Run(() => Console.WriteLine("no-op"), tokenSource.Token);
+
                 // delays 5s
-                await new OperationRegistry.DelayOperation(tokenSource.Token).RunAsync();
+                await Task.Delay(TimeSpan.FromSeconds(5), tokenSource.Token);
             }
         }
 
